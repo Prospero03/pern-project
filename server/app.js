@@ -1,9 +1,12 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const sequelize = require('./database/database')
 const models = require('./models/models')
+const router  = require('./routers')
+
 
 const PORT = process.env.PORT || 8000
 const app = express()
@@ -13,6 +16,8 @@ app.use(cors({
     credentials: true,
 }))
 app.use(express.json())
+app.use('/api', router)
+app.use(cookieParser())
 
 const start = async() => {
     try {
