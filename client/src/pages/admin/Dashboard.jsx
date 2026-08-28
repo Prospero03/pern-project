@@ -14,7 +14,7 @@ const Dashboard = () => {
         const res = await axios.get(`${server}/api/admin/dashboard`,
           {withCredentials: true}
         )
-        setAdminData(res.data)
+        setAdminData(res.data.data)
         navigate('/admin')
       } catch (error) {
         navigate('/')
@@ -28,8 +28,9 @@ const Dashboard = () => {
   }
 
   return (
-    <div>{adminData?.username}
-    Вы вошли</div>
+    <div>
+      {adminData?.username}
+    </div>
   )
 }
 

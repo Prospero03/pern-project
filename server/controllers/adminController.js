@@ -1,7 +1,14 @@
-
 class adminController{
     async dashboard(req,res){
-        return res.status(200).json({message: 'вы вошли как администратор'})
+        const {user} = req
+        return res.status(200).json({
+            message: 'вы вошли как администратор',
+            data:{
+                username : user.username, 
+                email : user.email,
+                role : user.role
+            }
+        })
     }
 }
 
