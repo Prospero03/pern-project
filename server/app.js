@@ -16,8 +16,9 @@ app.use(cors({
     credentials: true,
 }))
 app.use(express.json())
-app.use('/api', router)
 app.use(cookieParser())
+app.use('/api', router)
+
 
 const start = async() => {
     try {

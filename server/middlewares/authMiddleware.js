@@ -5,7 +5,7 @@ class authMiddleware{
     async verifyToken(req,res, next){
         const token = req.cookies.ApiReact;
         if(!token){
-            return res.status(401)
+            return res.status(401).json({error: 'нет авторизации'})
         }
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
@@ -22,7 +22,7 @@ class authMiddleware{
 
     authorizeAdmin(req,res,next){
         if(req.user.role !== 'admin'){
-            return res.status(403)
+            return res.status(403).json({error:'вы не администратор'})
         }
         next()
     }
